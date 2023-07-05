@@ -1,5 +1,6 @@
 const express = require('express')
 const axios = require('axios')
+const bodyParser = require('body-parser');
 const app = express()
 
 const url = 'https://api.telegram.org/bot';
@@ -11,6 +12,7 @@ app.all('/', (req, res) => {
     res.send('Yo!')
 })
 */
+app.use(bodyParser.json());
 
 app.post('/', (req,res) => {
     axios.post(`${url}${apiToken}/sendMessage`,
