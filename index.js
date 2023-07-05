@@ -15,7 +15,10 @@ app.all('/', (req, res) => {
 app.use(bodyParser.json());
 
 app.post('/', (req,res) => {
-    axios.post(`${url}${apiToken}/sendMessage`,
+    const chatId = req.body.message.chat.id;
+    const sentMessage = req.body.message.text;
+    if (sentMessage.match(/hello/gi)) {
+        axios.post(`${url}${apiToken}/sendMessage`,
                {
                     chat_id: '120611120',
                     text: 'hello back 👋'
@@ -25,5 +28,9 @@ app.post('/', (req,res) => {
                }).catch((error) => {
                     res.send(error);
                });
+    }else{
+          // if no hello present, just respond with 200 
+          res.status(200).send({});
+     }
 })
 app.listen(process.env.PORT || 3000)
