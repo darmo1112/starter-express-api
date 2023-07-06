@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser');
+const puppeteer = require('puppeteer-core');
 const nodeHtmlToImage = require('node-html-to-image');
 const app = express()
 
