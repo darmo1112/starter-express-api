@@ -1,8 +1,6 @@
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser');
-const puppeteer = require('puppeteer-core');
-const nodeHtmlToImage = require('node-html-to-image');
 const app = express()
 
 const url = 'https://api.telegram.org/bot';
@@ -17,11 +15,8 @@ app.all('/', (req, res) => {
 app.use(bodyParser.json());
 
 app.get('/', (req,res) => {
-	nodeHtmlToImage({
-		output: './image.png',
-		html: '<html><body>Hello world!</body></html>'
-	})
-	.then(() => console.log('The image was created successfully!'))
+	console.log("Just got a GET request!")
+	res.send('Yo!');
 })
 
 app.post('/', (req,res) => {
