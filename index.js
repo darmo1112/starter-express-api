@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser');
+const nodeHtmlToImage = require('node-html-to-image');
 const app = express()
 
 const url = 'https://api.telegram.org/bot';
@@ -13,6 +14,14 @@ app.all('/', (req, res) => {
 })
 */
 app.use(bodyParser.json());
+
+app.get('/', (req,res) => {
+	nodeHtmlToImage({
+		output: './image.png',
+		html: '<html><body>Hello world!</body></html>'
+	})
+	.then(() => console.log('The image was created successfully!'))
+})
 
 app.post('/', (req,res) => {
     const chatId = req.body.message.chat.id;
